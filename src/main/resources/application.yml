@@ -1,0 +1,39 @@
+application:
+  validationSchema:
+    schema-file: "src/main/resources/schema/FATCASchema2.0/FatcaXML_v2.0.xsd"
+    start-element: "{urn:oecd:ties:fatca:v2}FATCA_OECD"
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 200KB
+      max-file-size: 2MB
+      max-request-size: 2MB
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        trace: false
+        web-allow-others: false
+  datasource:
+    url: jdbc:h2:file:./parallels/Documents/docs/dev-db
+    driver-class-name: org.h2.Driver
+  jpa:
+    spring:
+      jpa:
+        database-platform=org:
+          hibernate:
+            dialect: H2Dialect
+    hibernate:
+      ddl-auto: create
+
+server:
+  port: 8080
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
+
+
