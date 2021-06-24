@@ -1,5 +1,5 @@
 HELP.md
-
+*.db
 ./parallels
 ./.extract
 ./.mvn
