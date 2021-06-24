@@ -1,7 +1,23 @@
 application:
-  validationSchema:
+  validation-schema:
     schema-file: "src/main/resources/schema/FATCASchema2.0/FatcaXML_v2.0.xsd"
     start-element: "{urn:oecd:ties:fatca:v2}FATCA_OECD"
+  keys:
+    sender-private-key: ./Keystore/Canada_PrepTool/KSprivateCA.jks
+  certs:
+    sender-public-cert: ./Certs/000000.00000.TA.124.crt"
+    receiver-public-key: ./Certs/000000.00000.TA.840.crt
+  giin:
+    receiver-giin: "000000.00000.TA.840"
+    sender-giin: "000000.00000.TA.124"
+    approver-giin: "000000.00000.TA.484"
+  tax-year: 2015
+server:
+  port: 8080
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
 
 spring:
   servlet:
@@ -28,12 +44,3 @@ spring:
             dialect: H2Dialect
     hibernate:
       ddl-auto: create
-
-server:
-  port: 8080
-  error:
-    path: /error
-    whitelabel:
-      enabled: false
-
-

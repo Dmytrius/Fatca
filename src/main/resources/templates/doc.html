@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Convert file FATCA</title>
+    <title>Package file FATCA</title>
 </head>
 <body>
 <div>
-    <h3>Convert file FATCA</h3>
+    <h3>Package file FATCA</h3>
     <form id="uploadFiles" name="uploadFiles" method="post" th:action=@{/uploadFiles} encType="multipart/form-data">
         <input type="file" name="files" multiple required />
         <button type="submit">Submit</button>
@@ -25,9 +25,9 @@
         </thead>
         <tbody>
         <tr th:each="doc:${docs}">
-            <td th:text="${doc.Id}" />
+            <td th:text="${doc.id}" />
             <td th:text="${doc.docName}"/>
-            <td><a th:href="@{'/downloadFile/' + ${doc.Id}}">Download</a></td>
+            <td><a th:href="@{'/downloadFile/' + ${doc.id}}">Download</a></td>
         </tr>
         </tbody>
     </table>

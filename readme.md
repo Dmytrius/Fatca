@@ -1,15 +1,19 @@
 # Required dependencies:
 
 - java v. 8+
-- maven v.3.8+
+- maven v.3.8+ (https://maven.apache.org/download.cgi)
 
 # For build project need execute command:
 
-- mvn clean package
+ mvn clean package
 
 # For start project need execute command:
 
-- java -jar ./target/fatca-0.0.1-SNAPSHOT.jar --spring.config.location={your_location}/application.yml
+ java -jar ./target/fatca-0.0.1-SNAPSHOT.jar 
+
+# For start project with excluded property need execute command:
+
+java -jar ./target/fatca-0.0.1-SNAPSHOT.jar --spring.config.location={your_location}/application.yml
 
 # For use:
 go to http://localhost:8080/
