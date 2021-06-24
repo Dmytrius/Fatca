@@ -50,22 +50,23 @@ public class DocStorageService {
     @Value("${application.validationSchema.start-element:{urn:oecd:ties:fatca:v2}FATCA_OECD}")
     private String startElem;
 
-    @Value("${application.certs.sender-public-cert}")
+//    @Value("${application.certs.sender-public-cert}")
     private X509Certificate senderPublicCert;
 
-    @Value("${application.certs.receiver-public-cert}")
+//    @Value("${application.certs.receiver-public-cert}")
     private X509Certificate receiverPublicCert;
 
-    @Value("${application.certs.sender-giin}")
+    @Value("${application.giin.sender-giin}")
     private String senderGiin;
 
-    @Value("${application.keys.sender-private-key}")
-    private PrivateKey senderPrivateKey;
-    @Value("${application.certs.receiver-giin}")
+    @Value("${application.giin.receiver-giin}")
     private String receiverGiin;
 
-    @Value("${application.certs.approver-giin}")
+    @Value("${application.giin.approver-giin}")
     private String approverGiin;
+
+//    @Value("${application.keys.sender-private-key}")
+    private PrivateKey senderPrivateKey;
 
     @Value("${application.tax-year}")
     private Integer taxyear;
@@ -144,12 +145,10 @@ public class DocStorageService {
     }
 
     private String signAndCreatePkg(String unsignedXml) throws Exception {
-        boolean isStreaming = false;
-        String fileFormat = FileFormatCdType.XML.value();
-        String binaryEncoding = BinaryEncodingSchemeCdType.NONE.value();
         approverGiin = null; X509Certificate approverPublicCert = null;
         return signAndCreatePkgWithApprover(unsignedXml, senderPrivateKey, senderPublicCert, senderGiin, receiverGiin,
-                receiverPublicCert, approverGiin, approverPublicCert, taxyear, fileFormat, binaryEncoding, commType, isStreaming);
+                receiverPublicCert, approverGiin, approverPublicCert, taxyear, FileFormatCdType.XML.value(),
+                BinaryEncodingSchemeCdType.NONE.value(), commType, false);
     }
 
     private String signAndCreatePkgWithApprover(String unsignedXml, PrivateKey senderPrivateKey, X509Certificate senderPublicCert,
