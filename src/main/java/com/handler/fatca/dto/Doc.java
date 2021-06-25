@@ -15,11 +15,11 @@ public class Doc {
     private String docType;
 
     @Lob
-    private byte[] data;
+    private String data;
 
     public Doc() {}
 
-    public Doc(String docName, String docType, byte[] data) {
+    public Doc(String docName, String docType, String data) {
         super();
         this.docName = docName;
         this.docType = docType;
@@ -50,11 +50,11 @@ public class Doc {
         this.docType = docType;
     }
 
-    public byte[] getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(byte[] data) {
+    public void setData(String data) {
         this.data = data;
     }
 

@@ -81,12 +81,12 @@ public class DocStorageService {
         String docname = file.getOriginalFilename();
         try {
             if(validateSchema(new String(file.getBytes()))) {
-                Doc doc = new Doc(docname, file.getContentType(), file.getBytes());
-                signAndCreatePkg(new String(file.getBytes()));
+                Doc doc = new Doc(docname, file.getContentType(), (new String(signAndCreatePkg(new String(file.getBytes())))));
+//                signAndCreatePkg(new String(file.getBytes()));
                 return docRepository.save(doc);
             }
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error(e.toString());
         }
         return null;
     }
@@ -145,7 +145,8 @@ public class DocStorageService {
     }
 
     private String signAndCreatePkg(String unsignedXml) throws Exception {
-        approverGiin = null; X509Certificate approverPublicCert = null;
+        approverGiin = null;
+        X509Certificate approverPublicCert = null;
         return signAndCreatePkgWithApprover(unsignedXml, senderPrivateKey, senderPublicCert, senderGiin, receiverGiin,
                 receiverPublicCert, approverGiin, approverPublicCert, taxyear, FileFormatCdType.XML.value(),
                 BinaryEncodingSchemeCdType.NONE.value(), commType, false);

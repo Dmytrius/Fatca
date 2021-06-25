@@ -43,6 +43,6 @@ public class DocController {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(doc.getDocType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getDocName()+"\"")
-                .body(new ByteArrayResource(doc.getData()));
+                .body(new ByteArrayResource(doc.getData().getBytes()));
     }
 }
